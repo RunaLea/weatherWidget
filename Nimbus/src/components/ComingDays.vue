@@ -2,10 +2,10 @@
   <div class="bg-white/80 rounded-xl shadow p-4 w-full max-w-screen-md mx-auto mt-4 mb-4 text-black">
     <div class="text-xl font-semibold mb-4">Next Days</div>
     <div class="flex flex-col gap-3">
-      <div v-for="day in days" :key="day.time" class="flex items-center justify-between p-2 rounded hover:bg-gray-100 transition">
+      <div v-for="day in dailyForecast" :key="day.time" class="flex items-center justify-between p-2 rounded hover:bg-gray-100 transition">
         <div class="flex items-center gap-3">
-          <span class="text-2xl">{{ weatherCodeToEmoji[day.values.weatherCodeMax] || '❓' }}</span>
-          <span class="font-medium">{{ formatDay(day.time) }}</span>
+          <img :src="useWeatherIcon(day.values.weatherCodeMax, true)">
+          <span class="font-medium">{{ useFormatDay(day.time) }}</span>
         </div>
         <div>
           <span class="font-semibold">{{ day.values.temperatureMax }}°C</span>
@@ -17,20 +17,8 @@
 </template>
 
 <script setup lang="ts">
-import { dailyForecast } from '../composables/useWeatherMock'
+import { useWeatherIcon, useDailyForecast, useFormatDay } from '../composables/DaysData'
 
-const days = dailyForecast
+const dailyForecast = useDailyForecast()
 
-const weatherCodeToEmoji: Record<number, string> = {
-  1000: '☀️',
-  1001: '☁️',
-  1100: '🌤️',
-  1101: '⛅',
-  1102: '🌥️',
-}
-
-function formatDay(dateStr: string) {
-  const date = new Date(dateStr)
-  return date.toLocaleDateString('en-US', { weekday: 'long' })
-}
 </script>
