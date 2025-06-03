@@ -1,18 +1,18 @@
 <template>
-  <div class="bg-white/80 rounded-xl shadow p-4 w-full max-w-screen-md mx-auto mb-4 text-black">
-    <div class="text-3xl font-bold mb-2">{{ current.values.temperature }}°C</div>
-    <div class="mb-4 flex items-center gap-2">
-      <span class="text-3xl">{{ weatherEmoji }}</span>
-      <span class="capitalize">{{ weatherLabel }}</span>
+  <div class="bg-gradient-to-br from-white/90 to-gray-100/80 rounded-2xl shadow-xl p-8 w-full max-w-md mx-auto mb-6 text-black flex flex-col items-center">
+    <div class="flex flex-col items-center mb-4">
+      <span class="text-6xl mb-2">{{ weatherEmoji }}</span>
+      <span class="text-5xl font-extrabold tracking-tight mb-1">{{ current.values.temperature }}°C</span>
+      <span class="text-lg font-medium text-gray-500 capitalize">{{ weatherLabel }}</span>
     </div>
-    <div class="flex justify-center gap-6">
-      <div>
-        <span class="font-semibold block">Wind</span>
-        <span>{{ current.values.windSpeed }} km/h</span>
+    <div class="flex justify-center gap-10 w-full mt-2">
+      <div class="flex flex-col items-center">
+        <span class="font-semibold text-gray-700">Wind</span>
+        <span class="text-lg">{{ current.values.windSpeed }} <span class="text-gray-400 text-base">km/h</span></span>
       </div>
-      <div>
-        <span class="font-semibold block">Humidity</span>
-        <span>{{ current.values.humidity }}%</span>
+      <div class="flex flex-col items-center">
+        <span class="font-semibold text-gray-700">Humidity</span>
+        <span class="text-lg">{{ current.values.humidity }}<span class="text-gray-400 text-base">%</span></span>
       </div>
     </div>
   </div>
