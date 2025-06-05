@@ -77,3 +77,9 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+html, body {
+  background: linear-gradient(135deg, #bfdbfe, #7dd3fc, #c7d2fe);
+  min-height: 100vh;
+  background-attachment: fixed;
+}
