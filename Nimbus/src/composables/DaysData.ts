@@ -1,12 +1,19 @@
 import { reactive, ref } from "vue";
+import dailyData from '../../ExampleJSON/JSONExampleDaily.json'
 
-const date = reactive ({
-  day: 0,
-  month: 0,
-  year: 0
-})
+const dailyForecast = ref (dailyData.timelines.daily.slice(0, 6))
 
-const weather = ref('cloudy')
+export function useDailyForecast() { return dailyForecast }
 
-export function useWeather() {return weather}
-export function useDate() {return date}
+export function useFormatDay(dateStr: string) {
+  const date = new Date(dateStr)
+  return date.toLocaleDateString('en-US', { weekday: 'long' })
+}
+
+export function useWeatherIcon(code: number, day: boolean) {
+  let src = "";
+
+  if (day) { src = `/src/assets/tomorrow-icons/${code}0.png`; }
+  if (!day) { src = `/src/assets/tomorrow-icons/${code}1.png`; }
+  return src;
+}
