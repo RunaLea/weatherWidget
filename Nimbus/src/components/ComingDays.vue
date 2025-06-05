@@ -4,7 +4,7 @@
     <div class="flex flex-col gap-3">
       <div v-for="day in dailyForecast" :key="day.time" class="flex items-center justify-between p-2 rounded hover:bg-gray-100 transition">
         <div class="flex items-center gap-3">
-          <img :src="useWeatherIcon(day.values.weatherCodeMax, true)">
+          <img :src="useWeatherIcon(day.values.weatherCodeMax)">
           <span class="font-medium">{{ useFormatDay(day.time) }}</span>
         </div>
         <div>
@@ -17,7 +17,8 @@
 </template>
 
 <script setup lang="ts">
-import { useWeatherIcon, useDailyForecast, useFormatDay } from '../composables/DaysData'
+import { useDailyForecast, useFormatDay } from '../composables/DaysData'
+import { useWeatherIcon } from '../composables/AppData'
 
 const dailyForecast = useDailyForecast()
 
