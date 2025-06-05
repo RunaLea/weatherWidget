@@ -12,5 +12,10 @@ import CurrentWeather from './components/CurrentWeather.vue';
 import ComingHours from './components/ComingHours.vue';
 import ComingDays from './components/ComingDays.vue';
 import { useIsDay } from './composables/AppData'
+import { watchEffect } from 'vue'
 const isDay = useIsDay();
+
+watchEffect(() => {
+  document.body.classList.toggle('night-bg', !isDay.value);
+});
 </script>

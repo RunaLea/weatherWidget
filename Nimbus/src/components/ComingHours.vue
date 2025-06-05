@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white/80 rounded-xl shadow p-4 w-full max-w-screen-md mx-auto mt-4 mb-4 text-black">
+  <div class="card bg-white/80 rounded-xl shadow p-4 w-full max-w-screen-md mx-auto mt-4 mb-4 text-black">
     <div class="text-xl font-semibold mb-4">Next Hours</div>
     <div class="flex gap-4 overflow-x-auto pb-2">
       <div v-for="hour in hourlyForecast" :key="hour.time" class="flex flex-col items-center min-w-[64px]">

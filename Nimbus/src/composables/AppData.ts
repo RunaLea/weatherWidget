@@ -1,7 +1,7 @@
 import { ref } from "vue";
 import { useFormatHour } from "./HoursData";
 
-const isDay = ref(true);
+const isDay = ref(false);
 
 export function useIsDay() { return isDay }
 export function useWeatherIcon(code: number, hour: string | null) {
