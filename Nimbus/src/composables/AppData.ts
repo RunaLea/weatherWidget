@@ -20,7 +20,7 @@ export function useWeatherIcon(code: number, hour: string | null) {
     }
   }
 
-  if (isDay) { src = `/src/assets/tomorrow-icons/${code}0.png`; }
-  if (!isDay) { src = `/src/assets/tomorrow-icons/${code}1.png`; }
+  if (isDay.value) { src = `/src/assets/tomorrow-icons/${code}0.png`; }
+  if (!isDay.value) { src = `/src/assets/tomorrow-icons/${code}1.png`; }
   return src;
 }
