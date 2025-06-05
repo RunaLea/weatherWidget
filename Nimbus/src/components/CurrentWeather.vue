@@ -1,7 +1,7 @@
 <template>
   <div class="bg-gradient-to-br from-white/90 to-gray-100/80 rounded-2xl shadow-xl p-8 w-full max-w-md mx-auto mb-6 text-black flex flex-col items-center">
     <div class="flex flex-col items-center mb-4">
-      <img :src="useWeatherIcon(currentWeather.values.weatherCode, currentWeather.time.hour)">
+      <img :src="useWeatherIcon(currentWeather.values.weatherCode, currentWeather.time)">
       <span class="text-5xl font-extrabold tracking-tight mb-1">{{ currentWeather.values.temperature }}°C</span>
       <span class="text-lg font-medium text-gray-500 capitalize">{{ weatherLabel }}</span>
     </div>
@@ -21,7 +21,6 @@
 <script setup lang="ts">
 import { useCurrentWeather, useWeatherLabel } from '../composables/CurrentData'
 import { useWeatherIcon } from '../composables/AppData'
-import { computed } from 'vue'
 
 const weatherLabel = useWeatherLabel()
 const currentWeather = useCurrentWeather()
