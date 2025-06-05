@@ -1,4 +1,4 @@
-import { ref, computed } from "vue";
+import { computed } from "vue";
 import hourlyData from '../../ExampleJSON/JSONExampleHourly.json'
 
 const currentWeather = hourlyData.timelines.hourly[0]

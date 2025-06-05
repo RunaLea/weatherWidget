@@ -83,3 +83,24 @@ html, body {
   min-height: 100vh;
   background-attachment: fixed;
 }
+
+.night-bg, .night-bg body {
+  background: linear-gradient(135deg, #0f172a, #1e293b, #334155) !important;
+  min-height: 100vh;
+  background-attachment: fixed;
+}
+
+.night-bg .card {
+  background: #1e293b !important;
+  color: #fff !important;
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.5);
+}
+
+.night-bg h1,
+.night-bg h2,
+.night-bg h3,
+.night-bg p,
+.night-bg span,
+.night-bg a {
+  color: #fff !important;
+}
