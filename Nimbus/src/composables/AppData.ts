@@ -6,37 +6,26 @@ const isDay = ref(false);
 export function useIsDay() { return isDay }
 
 export function useWeatherIcon(code: number, hour: string | null) {
-  let src = "";
   const dayUrl = `/src/assets/tomorrow-icons/${code}0.png`
   const nightUrl = `/src/assets/tomorrow-icons/${code}1.png`
+  
+  if (!isImage(nightUrl)) { return dayUrl }
 
   if (hour) {
     const hourValue = useFormatHour(hour);
+    const hourNum = Number(hourValue[0] + hourValue[1])
     
-    if (Number(hourValue[0] + hourValue[1]) >= 18) { 
-    const img = new Image();
-
-    img.src = nightUrl;
-    if (img.height != 0) { src = nightUrl; }
-    else { src = dayUrl }
-    return src;
+    if (hourNum >= 18 || hourNum < 6) { return nightUrl }
+    if (hourNum < 18 && hourNum >= 6) { return dayUrl }
   }
 
-    if(Number(hourValue[0] + hourValue[1]) < 18) {
-      src = dayUrl;
-      return src;
-    }
-  }
+  if (isDay.value) { return dayUrl }
+  if (!isDay.value) { return nightUrl }
+}
 
-  if (isDay.value) { src = dayUrl; }
-
-  if (!isDay.value) { 
-    const img = new Image();
-
-    img.src = nightUrl;
-    if (img.height != 0) { src = nightUrl; }
-    else { src = dayUrl }
-  }
-
-  return src;
+export function isImage(url: string) {
+  const img = new Image();
+  img.src = url
+  if (img.height != 0) { return true; }
+  else { return false }
 }
