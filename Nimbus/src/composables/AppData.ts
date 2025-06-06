@@ -1,9 +1,15 @@
-import { ref } from "vue";
 import { useFormatHour } from "./HoursData";
+import { useCurrentWeather } from "./CurrentData";
 
-const isDay = ref(false);
+const currentWeather = useCurrentWeather()
 
-export function useIsDay() { return isDay }
+export function useIsDay(hour: string) { 
+  const hourValue = useFormatHour(hour);
+  const hourNum = Number(hourValue[0] + hourValue[1])
+
+  if (hourNum >= 21 || hourNum < 6) { return false }
+  if (hourNum < 21 && hourNum >= 6) { return true }
+}
 
 export function useWeatherIcon(code: number, hour: string | null) {
   const dayUrl = `/src/assets/tomorrow-icons/${code}0.png`
@@ -12,15 +18,12 @@ export function useWeatherIcon(code: number, hour: string | null) {
   if (!isImage(nightUrl)) { return dayUrl }
 
   if (hour) {
-    const hourValue = useFormatHour(hour);
-    const hourNum = Number(hourValue[0] + hourValue[1])
-    
-    if (hourNum >= 18 || hourNum < 6) { return nightUrl }
-    if (hourNum < 18 && hourNum >= 6) { return dayUrl }
+    if (!useIsDay(hour)) { return nightUrl }
+    if (useIsDay(hour)) { return dayUrl }
   }
 
-  if (isDay.value) { return dayUrl }
-  if (!isDay.value) { return nightUrl }
+  if (useIsDay(currentWeather.time)) { return dayUrl }
+  if (!useIsDay(currentWeather.time)) { return nightUrl }
 }
 
 export function isImage(url: string) {
