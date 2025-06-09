@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>nl.nimbus</groupId>
 	<artifactId>nimbusBackend</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>nimbusBackend</name>
 	<description>Backend project for Nimbus weather app</description>
 	<url/>
