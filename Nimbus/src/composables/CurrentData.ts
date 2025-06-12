@@ -1,7 +1,6 @@
 import { computed } from "vue";
-import hourlyData from '../../ExampleJSON/JSONExampleHourly.json'
+import {useWeather} from "./AppData.ts";
 
-const currentWeather = hourlyData.timelines.hourly[0]
 
 const weatherCodeToLabel: Record<number, string> = {
   1000: 'Clear',
@@ -98,7 +97,13 @@ const weatherCodeToLabel: Record<number, string> = {
   8002: 'Mostly Cloudy, Thunderstorm',
 }
 
-const weatherLabel = computed(() => weatherCodeToLabel[currentWeather.values.weatherCode] || 'Unknown')
+export function useWeatherLabel() {
+  const { weather } = useWeather()
 
-export function useWeatherLabel() { return weatherLabel }
-export function useCurrentWeather() { return currentWeather }
+  const label = computed(() => {
+    const code = weather.value?.timelines?.hourly?.[0]?.values?.weatherCode
+    return weatherCodeToLabel[code] || 'Unknown'
+  })
+
+  return label
+}

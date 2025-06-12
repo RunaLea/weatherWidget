@@ -17,9 +17,10 @@
 </template>
 
 <script setup lang="ts">
-import { useDailyForecast, useFormatDay } from '../composables/DaysData'
-import { useWeatherIcon } from '../composables/AppData'
+import {useWeather, useWeatherIcon} from '../composables/AppData'
+import {useFormatDay} from "../composables/DaysData.ts";
 
-const dailyForecast = useDailyForecast()
+const weatherData = useWeather()
+const dailyForecast = weatherData.weather.value.timelines.daily
 
 </script>
