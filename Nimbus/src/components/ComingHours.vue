@@ -17,6 +17,6 @@ import {useFormatHour} from "../composables/HoursData.ts";
 
 
 const weatherData = useWeather()
-const hourlyForecast = weatherData.weather.value.timelines.hourly.slice(0, 6)
+const hourlyForecast = weatherData.weather.value.timelines.hourly.slice(0, 60)
 
 </script>

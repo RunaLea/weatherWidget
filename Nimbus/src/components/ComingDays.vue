@@ -40,7 +40,7 @@
 
 <script lang="ts" setup>
 import {useFormatDay} from '../composables/DaysData'
-import {useWeatherIcon} from '../composables/AppData'
+import {useWeather, useWeatherIcon} from '../composables/AppData'
 import {ref} from "vue";
 import {useFormatHour} from "../composables/HoursData.ts";
 
