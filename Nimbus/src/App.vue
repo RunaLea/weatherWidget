@@ -1,11 +1,6 @@
 <template>
   <div class="absolute top-0 left-0 w-[100vw] h-[100vw] bg-local z-1" :class="{ 'night-bg': !isDay }">
-    <transition name="">
-      <img :src="`/src/assets/background/cloud${Math.floor(Math.random() * 6) + 1}.png`" alt="" class="absolute -z-1">
-    </transition>
-    <img :src="`/src/assets/background/moon1.png`" alt="" class="absolute -z-1">
-    <!-- <img :src="`/src/assets/background/rain1.png`" alt="" class="absolute -z-1"> -->
-
+    <Background/>
     <div id="app" class="w-full h-[100%] min-w-screen max-w-2xl mx-auto bg-transparent flex flex-col items-center rounded-lg shadow-lg p-2 sm:p-4">
       <h1 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4 sm:mb-6 text-center">Nimbus Weather</h1>
         <CurrentWeather />
@@ -19,6 +14,7 @@
 import CurrentWeather from './components/CurrentWeather.vue';
 import ComingHours from './components/ComingHours.vue';
 import ComingDays from './components/ComingDays.vue';
+import Background from './components/Background.vue';
 import { useIsDay } from './composables/AppData'
 import { watchEffect } from 'vue';
 import { useCurrentWeather } from './composables/CurrentData';
