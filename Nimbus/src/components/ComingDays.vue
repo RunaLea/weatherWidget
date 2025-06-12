@@ -6,28 +6,30 @@
       <div v-for="day in dailyForecast" :key="day.time"
            class="flex items-center p-2 rounded hover:bg-gray-100 transition">
         <div
-            class=" hover:bg-gray-100 transition cursor-pointer w-full"
-            @click="toggleDetails(day.time)"
+            class=" hover:bg-gray-100 transition cursor-pointer w-full rounded"
+            @click="toggleDetails(day.time)" :class="{'bg-gray-100' : openItem === day.time}"
         >
           <div class="flex justify-between gap-5">
-          <div class="flex items-center gap-3">
-            <img alt="img" :src="useWeatherIcon(day.values.weatherCodeMax)">
-            <span class="font-medium">{{ useFormatDay(day.time) }}</span>
-          </div>
-          <div class="flex items-center">
-            <span class="font-semibold">{{ day.values.temperatureMax }}°C</span>
-            <span class="text-gray-500 ml-2">/ {{ day.values.temperatureMin }}°C</span>
-          </div>
+            <div class="flex items-center gap-3">
+              <img :src="useWeatherIcon(day.values.weatherCodeMax)" alt="img">
+              <span class="font-medium">{{ useFormatDay(day.time) }}</span>
+            </div>
+            <div class="flex items-center">
+              <span class="font-semibold">{{ day.values.temperatureMax }}°C</span>
+              <span class="text-gray-500 ml-2">/ {{ day.values.temperatureMin }}°C</span>
+            </div>
           </div>
           <transition name="accordion">
-            <div v-if="openItem === day.time" class="px-5 pb-5 text-sm text-gray-700 h-30 grid grid-cols-1 gap-0">
+            <div v-if="openItem === day.time"
+                 class="px-5 pb-5 text-sm text-gray-700 h-30 grid grid-cols-1 gap-0">
               <div class="flex items-center gap-5">
-              <div>Humidity: {{ day.values.humidityAvg }}%</div>
-              <div>Wind Speed: {{ day.values.windSpeedAvg }} km/h</div>
-                <div>Sunrise: {{ useFormatHour(day.values.sunriseTime )}}</div>
-                <div>Sunset: {{ useFormatHour(day.values.sunsetTime )}}</div>
-
-            </div>
+                <p>Humidity: {{ day.values.humidityAvg }}%</p>
+                <p>Dewpoint: {{day.values.dewPointAvg}}</p>
+                <p>Rain Intensity: {{day.values.rainIntensityAvg}}</p>
+                <p>Wind Speed: {{ day.values.windSpeedAvg }} km/h</p>
+                <p>Sunrise: {{ useFormatHour(day.values.sunriseTime) }}</p>
+                <p>Sunset: {{ useFormatHour(day.values.sunsetTime) }}</p>
+              </div>
             </div>
           </transition>
         </div>
