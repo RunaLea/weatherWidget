@@ -1,31 +1,31 @@
 <template>
-  <div class="card bg-white/80 rounded-xl shadow p-4 w-full h-full flex flex-col justify-start items-center text-black overflow-hidden">
-    <div class="text-xl font-semibold mb-4">Next Days</div>
-    <div class="flex flex-col gap-3 w-full">
+  <div class="card w-full max-w-xl h-72 flex flex-col items-center overflow-y-auto text-black">
+    <div class="text-lg font-semibold mb-0 sticky top-0 z-10 w-full text-center border-b border-gray-200">Next Days</div>
+    <div class="flex flex-col gap-2 w-full">
       <div v-for="day in dailyForecast" :key="day.time"
-           class="flex items-center p-2 rounded hover:bg-gray-100 transition w-full">
+           class="flex items-center p-1 rounded hover:bg-gray-100 transition w-full min-h-[48px]">
         <div
             class="hover:bg-gray-100 transition cursor-pointer w-full rounded"
             @click="toggleDetails(day.time)" :class="{'bg-gray-100' : openItem === day.time}"
         >
-          <div class="flex justify-between gap-5">
-            <div class="flex items-center gap-3">
-              <img :src="useWeatherIcon(day.values.weatherCodeMax)" alt="img">
-              <span class="font-medium">{{ useFormatDay(day.time) }}</span>
+          <div class="flex justify-between gap-3 items-center">
+            <div class="flex items-center gap-2">
+              <img :src="useWeatherIcon(day.values.weatherCodeMax, day.time)" alt="img" class="w-7 h-7">
+              <span class="font-medium text-sm">{{ useFormatDay(day.time) }}</span>
             </div>
-            <div class="flex items-center">
+            <div class="flex items-center text-sm">
               <span class="font-semibold">{{ day.values.temperatureMax }}°C</span>
-              <span class="text-gray-500 ml-2">/ {{ day.values.temperatureMin }}°C</span>
+              <span class="text-gray-500 ml-1">/ {{ day.values.temperatureMin }}°C</span>
             </div>
           </div>
           <transition name="accordion">
             <div v-if="openItem === day.time"
-                 class="px-5 pb-5 text-sm text-gray-700 h-30 grid grid-cols-1 gap-0">
-              <div class="flex items-center gap-5 flex-wrap">
+                 class="px-2 pb-2 text-xs text-gray-700 h-24 grid grid-cols-1 gap-0">
+              <div class="flex items-center gap-3 flex-wrap">
                 <p>Humidity: {{ day.values.humidityAvg }}%</p>
                 <p>Dewpoint: {{day.values.dewPointAvg}}</p>
-                <p>Rain Intensity: {{day.values.rainIntensityAvg}}</p>
-                <p>Wind Speed: {{ day.values.windSpeedAvg }} km/h</p>
+                <p>Rain: {{day.values.rainIntensityAvg}}</p>
+                <p>Wind: {{ day.values.windSpeedAvg }} km/h</p>
                 <p>Sunrise: {{ new Date(day.values.sunriseTime).toLocaleTimeString() }}</p>
                 <p>Sunset: {{ new Date(day.values.sunsetTime).toLocaleTimeString()  }}</p>
               </div>
@@ -41,7 +41,6 @@
 import {useFormatDay} from '../composables/DaysData'
 import {useWeather, useWeatherIcon} from '../composables/AppData'
 import {ref} from "vue";
-import {useFormatHour} from "../composables/HoursData.ts";
 
 const openItem = ref<string | null>(null)
 
@@ -51,7 +50,6 @@ function toggleDetails(dayTime: string) {
 
 const weatherData = useWeather()
 const dailyForecast = weatherData.value.timelines.daily
-
 
 </script>
 <style scoped>
@@ -70,9 +68,9 @@ const dailyForecast = weatherData.value.timelines.daily
 
 .accordion-enter-to,
 .accordion-leave-from {
-  max-height: 200px; /* adjust based on expected content */
+  max-height: 100px;
   opacity: 1;
-  padding-top: 16px; /* match your pb-4 or pt-4 */
-  padding-bottom: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 </style>
