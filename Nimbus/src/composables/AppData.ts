@@ -10,7 +10,7 @@ export function useWeather() {
       loading.value = false
     })
   }
-  return { weather }
+  return weather
 }
 
 const weather = ref()
@@ -47,10 +47,10 @@ export function useWeatherIcon(code: number, hour: string | null) {
     }
   }
 
-  if (useIsDay(useWeather().weather.value.timelines.hourly[0].time)) {
+  if (useIsDay(useWeather().value.timelines.hourly[0].time)) {
     return dayUrl
   }
-  if (!useIsDay(useWeather().weather.value.timelines.hourly[0].time)) {
+  if (!useIsDay(useWeather().value.timelines.hourly[0].time)) {
     return nightUrl
   }
 }

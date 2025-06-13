@@ -21,7 +21,7 @@ import { useWeatherIcon } from './composables/AppData';
 
 const weatherData = useWeather()
 const isDay = computed(() => {
-  const weather = weatherData.weather.value
+  const weather = weatherData.value
   if (!weather || !weather.timelines?.hourly?.[0]?.time) return null
   return useIsDay(weather.timelines.hourly[0].time)
 })
@@ -30,7 +30,7 @@ const weatherLabel = useWeatherLabel();
 const loading = isLoading()
 
 watchEffect(() => {
-  const weather = weatherData.weather.value
+  const weather = weatherData.value
   const hourly = weather?.timelines?.hourly?.[0]
 
   if (!hourly) return

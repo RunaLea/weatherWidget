@@ -23,7 +23,7 @@ import { useWeatherLabel } from '../composables/CurrentData'
 import {useWeather, useWeatherIcon} from '../composables/AppData'
 
 const weatherData = useWeather()
-const currentWeather = weatherData.weather.value.timelines.minutely[0].values
+const currentWeather = weatherData.value.timelines.minutely[0].values
 const weatherLabel = useWeatherLabel()
 
 </script>

@@ -98,7 +98,7 @@ const weatherCodeToLabel: Record<number, string> = {
 }
 
 export function useWeatherLabel() {
-  const { weather } = useWeather()
+  const weather  = useWeather()
 
   const label = computed(() => {
     const code = weather.value?.timelines?.hourly?.[0]?.values?.weatherCode

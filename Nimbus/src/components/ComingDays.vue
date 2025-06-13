@@ -51,7 +51,7 @@ function toggleDetails(dayTime: string) {
 }
 
 const weatherData = useWeather()
-const dailyForecast = weatherData.weather.value.timelines.daily
+const dailyForecast = weatherData.value.timelines.daily
 
 
 </script>
