@@ -1,12 +1,15 @@
 <template>
   <div v-if="loading">Loading weather...</div>
   <div v-else>
-  <div v-if="weatherData" id="app" :class="{ 'night-bg': !isDay }" class="w-full min-w-screen max-w-2xl mx-auto bg-transparent flex flex-col items-center rounded-lg shadow-lg p-2 sm:p-4">
-    <h1 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4 sm:mb-6 text-center">Nimbus Weather</h1>
-      <CurrentWeather />
-      <ComingHours />
-      <ComingDays />
-  </div>
+    <div class="absolute top-0 left-0 w-[100vw] h-[100vw] bg-local z-1" :class="{ 'night-bg': !isDay }">
+      <Background/>
+      <div id="app" class="w-full h-[100%] min-w-screen max-w-2xl mx-auto bg-transparent flex flex-col items-center rounded-lg shadow-lg p-2 sm:p-4">
+        <h1 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4 sm:mb-6 text-center">Nimbus Weather</h1>
+          <CurrentWeather />
+          <ComingHours />
+          <ComingDays />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -18,6 +21,7 @@ import {isLoading, useIsDay, useWeather} from './composables/AppData'
 import {computed, watchEffect} from 'vue'
 import { useWeatherLabel } from './composables/CurrentData';
 import { useWeatherIcon } from './composables/AppData';
+import Background from './components/Background.vue';
 
 const weatherData = useWeather()
 const isDay = computed(() => {
