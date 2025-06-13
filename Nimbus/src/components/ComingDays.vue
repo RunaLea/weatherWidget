@@ -27,8 +27,8 @@
                 <p>Dewpoint: {{day.values.dewPointAvg}}</p>
                 <p>Rain Intensity: {{day.values.rainIntensityAvg}}</p>
                 <p>Wind Speed: {{ day.values.windSpeedAvg }} km/h</p>
-                <p>Sunrise: {{ useFormatHour(day.values.sunriseTime) }}</p>
-                <p>Sunset: {{ useFormatHour(day.values.sunsetTime) }}</p>
+                <p>Sunrise: {{ new Date(day.values.sunriseTime).toLocaleTimeString() }}</p>
+                <p>Sunset: {{ new Date(day.values.sunsetTime).toLocaleTimeString()  }}</p>
               </div>
             </div>
           </transition>
