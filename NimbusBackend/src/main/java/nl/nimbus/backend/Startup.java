@@ -17,7 +17,7 @@ public class Startup implements ApplicationRunner {
 
   private ConfigurableApplicationContext context;
   private Environment environment;
-  WeatherService weatherService;
+  private WeatherService weatherService;
 
   @Override
   public void run(ApplicationArguments args) {
@@ -36,7 +36,6 @@ public class Startup implements ApplicationRunner {
   }
 
   public void initWeatherService() {
-    weatherService.updateWeatherDaily();
-    weatherService.updateWeatherHourly();
+    weatherService.updateWeather();
   }
 }

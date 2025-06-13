@@ -6,8 +6,6 @@ Run it using the following command in a terminal after starting up Docker:
 
 docker run -e "nimbus.api.secret=[APIKEYHERE]" -p 8080:8080 -t emilvdijk/nimbusbackend:latest
 
-then you can approach the container through two endpoints:
+then you can approach the container through endpoints:
 
-http://localhost:8080/hourly
-
-http://localhost:8080/daily
+http://localhost:8080/weather

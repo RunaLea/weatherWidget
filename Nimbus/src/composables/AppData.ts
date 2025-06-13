@@ -1,42 +1,65 @@
-import { ref } from "vue";
-import { useFormatHour } from "./HoursData";
+import {onMounted, ref} from "vue";
+import {useFormatHour} from "./HoursData.ts";
 
-const isDay = ref(false);
+export function useWeather() {
+  if (loading.value) {
+    onMounted(async () => {
+      const res = await fetch('http://localhost:8080/weather')
+      weather.value = await res.json()
+      loading.value = false
+    })
+  }
+  return weather
+}
 
-export function useIsDay() { return isDay }
+const weather = ref()
+const loading = ref(true)
+
+export function isLoading() {return loading}
+
+export function useIsDay(hour: string) {
+  const hourValue = useFormatHour(hour);
+  const hourNum = Number(hourValue[0] + hourValue[1])
+// FIXME doesnt work :(
+  if (hourNum >= 21 || hourNum < 6) {
+    return false
+  }
+  if (hourNum < 21 && hourNum >= 6) {
+    return true
+  }
+}
 
 export function useWeatherIcon(code: number, hour: string | null) {
-  let src = "";
   const dayUrl = `/src/assets/tomorrow-icons/${code}0.png`
   const nightUrl = `/src/assets/tomorrow-icons/${code}1.png`
 
-  if (hour) {
-    const hourValue = useFormatHour(hour);
-    
-    if (Number(hourValue[0] + hourValue[1]) >= 18) { 
-    const img = new Image();
-
-    img.src = nightUrl;
-    if (img.height != 0) { src = nightUrl; }
-    else { src = dayUrl }
-    return src;
+  if (!isImage(nightUrl)) {
+    return dayUrl
   }
 
-    if(Number(hourValue[0] + hourValue[1]) < 18) {
-      src = dayUrl;
-      return src;
+  if (hour) {
+    if (!useIsDay(hour)) {
+      return nightUrl
+    }
+    if (useIsDay(hour)) {
+      return dayUrl
     }
   }
 
-  if (isDay.value) { src = dayUrl; }
-
-  if (!isDay.value) { 
-    const img = new Image();
-
-    img.src = nightUrl;
-    if (img.height != 0) { src = nightUrl; }
-    else { src = dayUrl }
+  if (useIsDay(useWeather().value.timelines.hourly[0].time)) {
+    return dayUrl
   }
+  if (!useIsDay(useWeather().value.timelines.hourly[0].time)) {
+    return nightUrl
+  }
+}
 
-  return src;
+export function isImage(url: string) {
+  const img = new Image();
+  img.src = url
+  if (img.height != 0) {
+    return true;
+  } else {
+    return false
+  }
 }

@@ -1,8 +1,7 @@
 package nl.nimbus.backend.service;
 
 import lombok.extern.slf4j.Slf4j;
-import nl.nimbus.backend.dto.DailyResponseDto;
-import nl.nimbus.backend.dto.HourlyResponseDto;
+import nl.nimbus.backend.dto.WeatherResponseDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
@@ -33,38 +32,18 @@ public class ApiService {
     this.restClient = restClientBuilder.build();
   }
 
-  public DailyResponseDto getWeatherDaily() {
+  public WeatherResponseDto getWeather() {
     try {
       return restClient
           .get()
           .uri(
               UriComponentsBuilder.fromUriString(weatherApiUrl + weatherApiSub)
                   .queryParam("location", weatherApiLocation)
-                  .queryParam("timesteps", "1d")
                   .queryParam("units", weatherApiUnits)
                   .queryParam("apikey", weatherApikey)
                   .toUriString())
           .retrieve()
-          .body(DailyResponseDto.class);
-    } catch (Exception e) {
-      log.error("Exception during API call", e);
-      throw new RuntimeException("API call failed", e);
-    }
-  }
-
-  public HourlyResponseDto getWeatherHourly() {
-    try {
-      return restClient
-          .get()
-          .uri(
-              UriComponentsBuilder.fromUriString(weatherApiUrl + weatherApiSub)
-                  .queryParam("location", weatherApiLocation)
-                  .queryParam("timesteps", "1h")
-                  .queryParam("units", weatherApiUnits)
-                  .queryParam("apikey", weatherApikey)
-                  .toUriString())
-          .retrieve()
-          .body(HourlyResponseDto.class);
+          .body(WeatherResponseDto.class);
     } catch (Exception e) {
       log.error("Exception during API call", e);
       throw new RuntimeException("API call failed", e);
