@@ -4,9 +4,8 @@ import {useFormatHour} from "./HoursData.ts";
 export function useWeather() {
   if (loading.value) {
     onMounted(async () => {
-      const res = await fetch('/weather')
+      const res = await fetch('http://localhost:8080/weather')
       weather.value = await res.json()
-      console.log(weather.value)
       loading.value = false
     })
   }
