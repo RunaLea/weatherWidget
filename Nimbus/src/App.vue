@@ -1,12 +1,14 @@
 <template>
   <div v-if="loading">Loading weather...</div>
   <div v-else>
-  <div v-if="weatherData" id="app" :class="{ 'night-bg': !isDay }" class="w-full min-w-screen max-w-2xl mx-auto bg-transparent flex flex-col items-center rounded-lg shadow-lg p-2 sm:p-4">
-    <h1 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4 sm:mb-6 text-center">Nimbus Weather</h1>
-      <CurrentWeather />
-      <ComingHours />
-      <ComingDays />
-  </div>
+    <div v-if="weatherData" id="app" :class="[{'night-bg': !isDay}, 'flex flex-col items-center justify-center min-h-screen w-full gap-6 p-4 sm:p-8 h-screen']">
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4 sm:mb-6 text-center">Nimbus Weather</h1>
+      <div class="flex flex-col flex-1 w-full min-h-0 gap-6">
+        <CurrentWeather class="flex-1 min-h-0 overflow-auto" />
+        <ComingHours class="flex-1 min-h-0 overflow-auto" />
+        <ComingDays class="flex-1 min-h-0 overflow-auto" />
+      </div>
+    </div>
   </div>
 </template>
 

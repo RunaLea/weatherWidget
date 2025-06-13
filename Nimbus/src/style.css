@@ -1,20 +1,21 @@
 @import "tailwindcss/preflight";
 @tailwind utilities;
-
 @import "tailwindcss";
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 a {
@@ -26,12 +27,83 @@ a:hover {
   color: #535bf2;
 }
 
-body {
+html, body {
+  height: 100vh;
+  width: 100vw;
   margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: linear-gradient(135deg, #bfdbfe, #7dd3fc, #c7d2fe);
+  background-attachment: fixed;
+}
+
+.card {
+  padding: 2.5vw 2vw;
+  margin-bottom: 2vw;
+  border-radius: 1.5em;
+  background: rgba(255,255,255,0.85);
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.08);
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  flex-direction: column;
+  gap: 1.5vw;
+}
+
+.section-title, .card .text-xl {
+  font-size: 2em;
+  font-weight: 700;
+  margin-bottom: 1vw;
+  color: #1e293b;
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 900px), (max-height: 700px) {
+  .card {
+    padding: 4vw 2vw;
+    gap: 2vw;
+    min-width: 0;
+    min-height: 0;
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 600px), (max-height: 500px) {
+  .card {
+    height: 100%;
+    min-height: 0;
+    overflow-y: auto;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+.night-bg, .night-bg body {
+  background: linear-gradient(135deg, #0f172a, #1e293b, #334155) !important;
+  background-attachment: fixed;
+}
+
+.night-bg .card {
+  background: #1e293b !important;
+  color: #fff !important;
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.5);
+}
+
+.night-bg h1,
+.night-bg h2,
+.night-bg h3,
+.night-bg p,
+.night-bg span,
+.night-bg a {
+  color: #fff !important;
 }
 
 h1 {
@@ -58,55 +130,6 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-.card {
-  padding: 2em;
-}
-
-#app {
-  text-align: center;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
-html, body {
-  background: linear-gradient(135deg, #bfdbfe, #7dd3fc, #c7d2fe);
-  min-height: 100vh;
-  background-attachment: fixed;
-}
-
-.night-bg, .night-bg body {
-  background: linear-gradient(135deg, #0f172a, #1e293b, #334155) !important;
-  min-height: 100vh;
-  background-attachment: fixed;
-}
-
-.night-bg .card {
-  background: #1e293b !important;
-  color: #fff !important;
-  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.5);
-}
-
-.night-bg h1,
-.night-bg h2,
-.night-bg h3,
-.night-bg p,
-.night-bg span,
-.night-bg a {
-  color: #fff !important;
-}
-
-
-/* stackoverflow sponsored this section */
 /* Hide scrollbar for Chrome, Safari and Opera */
 ::-webkit-scrollbar {
   display: none;

@@ -1,12 +1,11 @@
 <template>
-  <div
-      class="card bg-white/80 rounded-xl shadow p-4 w-full max-w-screen-md mx-auto mt-4 mb-4 text-black">
+  <div class="card bg-white/80 rounded-xl shadow p-4 w-full h-full flex flex-col justify-start items-center text-black overflow-hidden">
     <div class="text-xl font-semibold mb-4">Next Days</div>
-    <div class="flex flex-col gap-3">
+    <div class="flex flex-col gap-3 w-full">
       <div v-for="day in dailyForecast" :key="day.time"
-           class="flex items-center p-2 rounded hover:bg-gray-100 transition">
+           class="flex items-center p-2 rounded hover:bg-gray-100 transition w-full">
         <div
-            class=" hover:bg-gray-100 transition cursor-pointer w-full rounded"
+            class="hover:bg-gray-100 transition cursor-pointer w-full rounded"
             @click="toggleDetails(day.time)" :class="{'bg-gray-100' : openItem === day.time}"
         >
           <div class="flex justify-between gap-5">
@@ -22,7 +21,7 @@
           <transition name="accordion">
             <div v-if="openItem === day.time"
                  class="px-5 pb-5 text-sm text-gray-700 h-30 grid grid-cols-1 gap-0">
-              <div class="flex items-center gap-5">
+              <div class="flex items-center gap-5 flex-wrap">
                 <p>Humidity: {{ day.values.humidityAvg }}%</p>
                 <p>Dewpoint: {{day.values.dewPointAvg}}</p>
                 <p>Rain Intensity: {{day.values.rainIntensityAvg}}</p>
