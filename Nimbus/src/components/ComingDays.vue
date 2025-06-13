@@ -39,8 +39,8 @@
 </template>
 
 <script lang="ts" setup>
-import {useDailyForecast, useFormatDay} from '../composables/DaysData'
-import {useWeatherIcon} from '../composables/AppData'
+import {useFormatDay} from '../composables/DaysData'
+import {useWeather, useWeatherIcon} from '../composables/AppData'
 import {ref} from "vue";
 import {useFormatHour} from "../composables/HoursData.ts";
 
@@ -50,7 +50,8 @@ function toggleDetails(dayTime: string) {
   openItem.value = openItem.value === dayTime ? null : dayTime
 }
 
-const dailyForecast = useDailyForecast()
+const weatherData = useWeather()
+const dailyForecast = weatherData.value.timelines.daily
 
 
 </script>

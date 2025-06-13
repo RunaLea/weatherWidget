@@ -12,9 +12,11 @@
 </template>
 
 <script setup lang="ts">
-import { useHourlyForecast, useFormatHour } from '../composables/HoursData'
-import { useWeatherIcon } from '../composables/AppData'
+import {useWeather, useWeatherIcon} from '../composables/AppData'
+import {useFormatHour} from "../composables/HoursData.ts";
 
-const hourlyForecast = useHourlyForecast()
+
+const weatherData = useWeather()
+const hourlyForecast = weatherData.value.timelines.hourly.slice(0, 60)
 
 </script>
