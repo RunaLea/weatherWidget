@@ -1,5 +1,9 @@
 import {onMounted, ref} from "vue";
-import {useFormatHour} from "./HoursData.ts";
+
+const weather = ref()
+const loading = ref(true)
+
+export function isLoading() {return loading}
 
 export function useWeather() {
   if (loading.value) {
@@ -11,11 +15,6 @@ export function useWeather() {
   }
   return weather
 }
-
-const weather = ref()
-const loading = ref(true)
-
-export function isLoading() {return loading}
 
 export function useIsDay(hour: string) {
   const hourValue = useFormatHour(hour);
@@ -40,4 +39,14 @@ export function useWeatherIcon(code: number, hour: string | null) {
 
 export function useDayIcon(code: number) {
   return `/src/assets/tomorrow-icons/${code}0.png`
+}
+
+export function useFormatHour(iso: string) {
+  const date = new Date(iso)
+  return date.getHours().toString().padStart(2, '0') + ':00'
+}
+
+export function useFormatDay(dateStr: string) {
+  const date = new Date(dateStr)
+  return date.toLocaleDateString('en-US', { weekday: 'long' })
 }
