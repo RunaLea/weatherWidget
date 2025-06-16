@@ -32,6 +32,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+
 }
 
 h1 {
@@ -91,7 +92,7 @@ html, body {
 }
 
 .night-bg .card {
-  background: #1e293b !important;
+  background: #1e293b59 !important;
   color: #fff !important;
   box-shadow: 0 2px 16px 0 rgba(0,0,0,0.5);
 }
@@ -103,4 +104,25 @@ html, body {
 .night-bg span,
 .night-bg a {
   color: #fff !important;
+}
+
+html, body, * {
+  scrollbar-color: transparent transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(255, 255, 255);
+  border-radius: 4px;
+}
+
+html, body, * {
+  scrollbar-color: rgb(255, 255, 255) transparent;
 }

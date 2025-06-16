@@ -1,7 +1,6 @@
 import { computed } from "vue";
 import {useWeather} from "./AppData.ts";
 
-
 const weatherCodeToLabel: Record<number, string> = {
   1000: 'Clear',
   1100: 'Mostly Clear',
