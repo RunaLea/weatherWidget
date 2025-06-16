@@ -38,8 +38,8 @@
 
     if (!hourly) return
 
-    const iconUrl = useWeatherIcon(hourly.weatherCode, hourly.time)
-
+    const iconUrl = useWeatherIcon(hourly.values.weatherCode, hourly.time)
+    
     document.body.classList.toggle('night-bg', !isDay)
     document.title = `Nimbus - ${weatherLabel.value}`
 
