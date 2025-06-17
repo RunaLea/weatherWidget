@@ -32,6 +32,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+
 }
 
 h1 {
@@ -76,4 +77,44 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+html, body {
+  background: linear-gradient(135deg, #bfdbfe, #7dd3fc, #c7d2fe);
+  min-height: 100vh;
+  background-attachment: fixed;
+}
+
+.night-bg, .night-bg body {
+  background: linear-gradient(135deg, #0f172a, #1e293b, #334155) !important;
+  min-height: 100vh;
+  background-attachment: fixed;
+}
+
+.night-bg .card {
+  background: #1e293b59 !important;
+  color: #fff !important;
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.5);
+}
+
+.night-bg h1,
+.night-bg h2,
+.night-bg h3,
+.night-bg p,
+.night-bg span,
+.night-bg a {
+  color: #fff !important;
+}
+
+html, body, * {
+  scrollbar-color: #3c3c3c transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3c3c3c;
+  border-radius: 4px;
 }
