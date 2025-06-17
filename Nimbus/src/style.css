@@ -107,22 +107,14 @@ html, body {
 }
 
 html, body, * {
-  scrollbar-color: transparent transparent;
+  scrollbar-color: #3c3c3c transparent;
 }
 
 ::-webkit-scrollbar {
   width: 8px;
 }
 
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
 ::-webkit-scrollbar-thumb {
-  background: rgb(255, 255, 255);
+  background: #3c3c3c;
   border-radius: 4px;
-}
-
-html, body, * {
-  scrollbar-color: rgb(255, 255, 255) transparent;
 }
